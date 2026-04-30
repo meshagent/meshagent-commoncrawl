@@ -1,4 +1,8 @@
 ## [0.39.4]
+- Switched Common Crawl imports to use the columnar Parquet index by default through DataFusion, with generated SQL for basic host/domain imports and an advanced custom SQL option.
+- Added periodic columnar scan progress, configurable DataFusion scan partitioning, and concurrent WARC range reads with retry, downloaded-byte, request-count, and queue reporting.
+- Fixed Common Crawl imports with multiple captures of the same URL in one batch by deduplicating primary keys before merge.
+- Added an explicit `--scope=domain` option to the Common Crawl example so broad subdomain imports are opt-in instead of implied by `www` URLs.
 - Updated Common Crawl CDX access to use paginated index reads, HTTPS-only index URLs, a Meshagent User-Agent, serialized/paced requests, and clearer HTTP 503 rate-limit guidance.
 - Breaking: Python scheduled-task client and spec models now use a `ScheduledTaskSpec` contract (including queue/container targeting) instead of separate queue/schedule/payload parameters.
 - Added Python scheduled-task run listing support with models/pages for runs and their status/attempt/timestamp fields.

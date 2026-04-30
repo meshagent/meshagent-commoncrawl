@@ -9,6 +9,7 @@ dynamic = ["version", "readme"]
 requires-python = ">=3.13"
 license = "Apache-2.0"
 dependencies = [
+  "datafusion~=52.0.0",
   "pytest~=8.4",
   "pytest-asyncio~=0.26",
   "meshagent-api==0.39.4",
