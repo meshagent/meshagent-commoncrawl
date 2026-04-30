@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from html.parser import HTMLParser
 from io import BytesIO
+import asyncio
 import json
 import logging
 from typing import TYPE_CHECKING, Any, TypeAlias
@@ -14,6 +15,7 @@ import pyarrow as pa
 
 from meshagent.api import RoomClient
 from meshagent.api.http import new_client_session
+from meshagent.commoncrawl.version import __version__
 
 if TYPE_CHECKING:
     from aiohttp import ClientSession
@@ -23,6 +25,12 @@ logger = logging.getLogger(__name__)
 
 COMMONCRAWL_INDEX_BASE_URL = "https://index.commoncrawl.org"
 COMMONCRAWL_DATA_BASE_URL = "https://data.commoncrawl.org"
+COMMONCRAWL_INDEX_REQUEST_DELAY_SECONDS = 1.0
+COMMONCRAWL_INDEX_RETRIES = 1
+COMMONCRAWL_INDEX_RETRY_DELAY_SECONDS = 60.0
+COMMONCRAWL_USER_AGENT = (
+    f"meshagent-commoncrawl/{__version__} (+https://www.meshagent.com)"
+)
 
 ExtractedRecord: TypeAlias = Mapping[str, Any]
 ExtractCallback: TypeAlias = Callable[
@@ -133,6 +141,9 @@ async def import_domain_from_commoncrawl(
     branch: str | None = None,
     limit: int | None = None,
     batch_size: int = 100,
+    index_request_delay: float = COMMONCRAWL_INDEX_REQUEST_DELAY_SECONDS,
+    index_retries: int = COMMONCRAWL_INDEX_RETRIES,
+    index_retry_delay: float = COMMONCRAWL_INDEX_RETRY_DELAY_SECONDS,
     session: "ClientSession | None" = None,
     progress: ProgressCallback | None = None,
 ) -> CommonCrawlImportResult:
@@ -149,6 +160,12 @@ async def import_domain_from_commoncrawl(
         raise ValueError("batch_size must be greater than zero")
     if primary_key == "":
         raise ValueError("primary_key must be non-empty")
+    if index_request_delay < 0:
+        raise ValueError("index_request_delay must be greater than or equal to zero")
+    if index_retries < 0:
+        raise ValueError("index_retries must be greater than or equal to zero")
+    if index_retry_delay < 0:
+        raise ValueError("index_retry_delay must be greater than or equal to zero")
 
     close_session = session is None
     http_session = session or new_client_session()
@@ -167,6 +184,9 @@ async def import_domain_from_commoncrawl(
             branch=branch,
             limit=limit,
             batch_size=batch_size,
+            index_request_delay=index_request_delay,
+            index_retries=index_retries,
+            index_retry_delay=index_retry_delay,
             progress=progress,
         )
     finally:
@@ -189,6 +209,9 @@ async def _import_with_session(
     branch: str | None,
     limit: int | None,
     batch_size: int,
+    index_request_delay: float,
+    index_retries: int,
+    index_retry_delay: float,
     progress: ProgressCallback | None,
 ) -> CommonCrawlImportResult:
     extractor = extract or _default_extract
@@ -222,6 +245,9 @@ async def _import_with_session(
         domain=domain,
         url_filter=url_filter,
         limit=limit,
+        request_delay=index_request_delay,
+        retries=index_retries,
+        retry_delay=index_retry_delay,
     ):
         matched_records += 1
         files_read += 1
@@ -444,6 +470,9 @@ async def _iter_index_records(
     domain: str,
     url_filter: str | Sequence[str] | None,
     limit: int | None,
+    request_delay: float = COMMONCRAWL_INDEX_REQUEST_DELAY_SECONDS,
+    retries: int = COMMONCRAWL_INDEX_RETRIES,
+    retry_delay: float = COMMONCRAWL_INDEX_RETRY_DELAY_SECONDS,
 ) -> AsyncIterator[_CdxRecord]:
     params: list[tuple[str, str]] = [
         ("url", _domain_index_query(domain)),
@@ -454,19 +483,117 @@ async def _iter_index_records(
     ]
     for filter_value in _url_filters(url_filter):
         params.append(("filter", f"~url:{filter_value}"))
-    if limit is not None:
-        params.append(("limit", str(limit)))
 
-    url = f"{_index_base_url(index)}?{urlencode(params)}"
-    async with session.get(url) as response:
-        if response.status == 404:
-            return
-        response.raise_for_status()
-        async for raw_line in response.content:
-            line = raw_line.decode("utf-8").strip()
+    page_count_url = (
+        f"{_index_base_url(index)}?{urlencode([*params, ('showNumPages', 'true')])}"
+    )
+    last_index_request_at: float | None = None
+
+    async def wait_for_index_request() -> None:
+        nonlocal last_index_request_at
+        loop = asyncio.get_running_loop()
+        if last_index_request_at is not None:
+            elapsed = loop.time() - last_index_request_at
+            if elapsed < request_delay:
+                await asyncio.sleep(request_delay - elapsed)
+        last_index_request_at = loop.time()
+
+    page_count_text = await _read_commoncrawl_index_text(
+        session=session,
+        url=page_count_url,
+        wait_for_request=wait_for_index_request,
+        retries=retries,
+        retry_delay=retry_delay,
+    )
+    if page_count_text is None:
+        return
+    page_count = json.loads(page_count_text)
+    pages = int(page_count.get("pages", 1))
+
+    emitted = 0
+    for page in range(pages):
+        page_params = [*params, ("page", str(page))]
+        if limit is not None:
+            remaining = limit - emitted
+            if remaining <= 0:
+                return
+            page_params.append(("limit", str(remaining)))
+
+        url = f"{_index_base_url(index)}?{urlencode(page_params)}"
+        page_text = await _read_commoncrawl_index_text(
+            session=session,
+            url=url,
+            wait_for_request=wait_for_index_request,
+            retries=retries,
+            retry_delay=retry_delay,
+        )
+        if page_text is None:
+            continue
+        for line in page_text.splitlines():
+            line = line.strip()
             if line == "":
                 continue
             yield _CdxRecord.from_json(json.loads(line))
+            emitted += 1
+            if limit is not None and emitted >= limit:
+                return
+
+
+async def _read_commoncrawl_index_text(
+    *,
+    session: "ClientSession",
+    url: str,
+    wait_for_request: Callable[[], Awaitable[None]],
+    retries: int,
+    retry_delay: float,
+) -> str | None:
+    for attempt in range(retries + 1):
+        await wait_for_request()
+        async with session.get(url, headers=_commoncrawl_index_headers()) as response:
+            if response.status == 404:
+                return None
+            if response.status == 503:
+                await _handle_commoncrawl_index_503(
+                    url=url,
+                    attempt=attempt,
+                    retries=retries,
+                    retry_delay=retry_delay,
+                )
+                continue
+            response.raise_for_status()
+            return await response.text()
+    raise RuntimeError("unreachable Common Crawl index retry state")
+
+
+async def _handle_commoncrawl_index_503(
+    *,
+    url: str,
+    attempt: int,
+    retries: int,
+    retry_delay: float,
+) -> None:
+    if attempt >= retries:
+        raise RuntimeError(
+            "Common Crawl CDX API returned HTTP 503. Slow down index requests; "
+            "if your IP was temporarily blocked, Common Crawl recommends waiting "
+            "24 hours before trying again. For broad filtering, use the columnar "
+            "index with Athena or Spark instead."
+        )
+    delay = retry_delay * (2**attempt)
+    logger.warning(
+        "Common Crawl CDX API returned HTTP 503 for %s; retrying in %.1fs",
+        url,
+        delay,
+    )
+    if delay > 0:
+        await asyncio.sleep(delay)
+
+
+def _commoncrawl_index_headers() -> dict[str, str]:
+    return {
+        "Accept": "application/json, text/plain;q=0.9, */*;q=0.1",
+        "User-Agent": COMMONCRAWL_USER_AGENT,
+    }
 
 
 async def _iter_warc_records(
@@ -589,7 +716,9 @@ def _url_filters(url_filter: str | Sequence[str] | None) -> list[str]:
 
 
 def _index_base_url(index: str) -> str:
-    if index.startswith("http://") or index.startswith("https://"):
+    if index.startswith("http://"):
+        raise ValueError("Common Crawl index URL must use HTTPS")
+    if index.startswith("https://"):
         return index
     normalized = index if index.endswith("-index") else f"{index}-index"
     return f"{COMMONCRAWL_INDEX_BASE_URL}/{normalized}"

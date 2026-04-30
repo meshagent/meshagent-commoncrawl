@@ -13,6 +13,7 @@ from meshagent.commoncrawl import (
     CommonCrawlImportProgress,
     import_domain_from_commoncrawl,
 )
+from meshagent.commoncrawl.commoncrawl import COMMONCRAWL_USER_AGENT
 
 
 def _namespace(value: str | None) -> list[str] | None:
@@ -130,7 +131,8 @@ def _ellipsize(value: str, max_length: int) -> str:
 async def _latest_index() -> str:
     async with new_client_session() as session:
         async with session.get(
-            "https://index.commoncrawl.org/collinfo.json"
+            "https://index.commoncrawl.org/collinfo.json",
+            headers={"User-Agent": COMMONCRAWL_USER_AGENT},
         ) as response:
             response.raise_for_status()
             collections = await response.json()

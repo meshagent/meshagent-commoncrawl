@@ -1,4 +1,5 @@
 ## [0.39.4]
+- Updated Common Crawl CDX access to use paginated index reads, HTTPS-only index URLs, a Meshagent User-Agent, serialized/paced requests, and clearer HTTP 503 rate-limit guidance.
 - Breaking: Python scheduled-task client and spec models now use a `ScheduledTaskSpec` contract (including queue/container targeting) instead of separate queue/schedule/payload parameters.
 - Added Python scheduled-task run listing support with models/pages for runs and their status/attempt/timestamp fields.
 - Updated scheduled-task client methods to support `room_id` filtering and the new spec-based request/response shapes.

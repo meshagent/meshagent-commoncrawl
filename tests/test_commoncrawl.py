@@ -255,6 +255,10 @@ def test_commoncrawl_index_url_helpers() -> None:
     assert commoncrawl._index_base_url("CC-MAIN-2025-08").endswith(
         "/CC-MAIN-2025-08-index"
     )
+    with pytest.raises(ValueError, match="must use HTTPS"):
+        commoncrawl._index_base_url(
+            "http://index.commoncrawl.org/CC-MAIN-2025-08-index"
+        )
 
 
 @pytest.mark.asyncio
@@ -280,8 +284,12 @@ async def test_index_404_is_treated_as_no_matches() -> None:
         def raise_for_status(self) -> None:
             raise AssertionError("404 should not raise")
 
+        async def text(self) -> str:
+            raise AssertionError("404 should not be read")
+
     class _Session:
-        def get(self, url: str) -> _Response:
+        def get(self, url: str, **kwargs: Any) -> _Response:
+            assert kwargs["headers"]["User-Agent"].startswith("meshagent-commoncrawl/")
             assert "matchType=domain" in url
             assert "url=www.hersheyland.com" in url
             assert "filter=~url%3A%5Ehttps%3F%3A%2F%2Fwww" in url
@@ -295,7 +303,220 @@ async def test_index_404_is_treated_as_no_matches() -> None:
             domain="www.hersheyland.com",
             url_filter=r"^https?://www\.hersheyland\.com(/.*)?$",
             limit=None,
+            request_delay=0,
         )
     ]
 
     assert rows == []
+
+
+@pytest.mark.asyncio
+async def test_iter_index_records_reads_paginated_cdx_pages() -> None:
+    class _Content:
+        def __init__(self, lines: list[bytes]) -> None:
+            self._lines = lines
+
+        def __aiter__(self) -> AsyncIterator[bytes]:
+            return self._iter()
+
+        async def _iter(self) -> AsyncIterator[bytes]:
+            for line in self._lines:
+                yield line
+
+    class _Response:
+        def __init__(
+            self,
+            *,
+            status: int = 200,
+            text: str = "",
+            lines: list[bytes] | None = None,
+        ) -> None:
+            self.status = status
+            self._text = text
+            self._lines = lines or []
+            self.content = _Content(lines or [])
+
+        async def __aenter__(self) -> _Response:
+            return self
+
+        async def __aexit__(self, *args: object) -> None:
+            return None
+
+        def raise_for_status(self) -> None:
+            if self.status >= 400:
+                raise AssertionError(f"unexpected HTTP status {self.status}")
+
+        async def text(self) -> str:
+            if self._text != "":
+                return self._text
+            return b"".join(self._lines).decode()
+
+    def row(url: str) -> bytes:
+        return (
+            b'{"url":"'
+            + url.encode()
+            + b'","timestamp":"20240101000000","mime":"text/html",'
+            + b'"filename":"crawl/a.warc.gz","offset":"0","length":"10"}\n'
+        )
+
+    class _Session:
+        def __init__(self) -> None:
+            self.urls: list[str] = []
+
+        def get(self, url: str, **kwargs: Any) -> _Response:
+            assert kwargs["headers"]["User-Agent"].startswith("meshagent-commoncrawl/")
+            self.urls.append(url)
+            if "showNumPages=true" in url:
+                return _Response(text='{"pages": 4}')
+            if "page=0" in url:
+                return _Response(lines=[row("https://example.com/a")])
+            if "page=1" in url:
+                return _Response(lines=[row("https://example.com/b")])
+            if "page=2" in url:
+                return _Response(status=404)
+            if "page=3" in url:
+                return _Response(lines=[row("https://example.com/c")])
+            raise AssertionError(f"unexpected URL {url}")
+
+    session = _Session()
+    rows = [
+        row
+        async for row in commoncrawl._iter_index_records(
+            session=session,  # type: ignore[arg-type]
+            index="CC-MAIN-2025-08",
+            domain="example.com",
+            url_filter=None,
+            limit=None,
+            request_delay=0,
+        )
+    ]
+
+    assert [row.url for row in rows] == [
+        "https://example.com/a",
+        "https://example.com/b",
+        "https://example.com/c",
+    ]
+    assert len(session.urls) == 5
+
+
+@pytest.mark.asyncio
+async def test_iter_index_records_applies_limit_across_pages() -> None:
+    class _Content:
+        def __init__(self, lines: list[bytes]) -> None:
+            self._lines = lines
+
+        def __aiter__(self) -> AsyncIterator[bytes]:
+            return self._iter()
+
+        async def _iter(self) -> AsyncIterator[bytes]:
+            for line in self._lines:
+                yield line
+
+    class _Response:
+        def __init__(self, *, text: str = "", lines: list[bytes] | None = None) -> None:
+            self.status = 200
+            self._text = text
+            self._lines = lines or []
+            self.content = _Content(lines or [])
+
+        async def __aenter__(self) -> _Response:
+            return self
+
+        async def __aexit__(self, *args: object) -> None:
+            return None
+
+        def raise_for_status(self) -> None:
+            return None
+
+        async def text(self) -> str:
+            if self._text != "":
+                return self._text
+            return b"".join(self._lines).decode()
+
+    def row(url: str) -> bytes:
+        return (
+            b'{"url":"'
+            + url.encode()
+            + b'","timestamp":"20240101000000","mime":"text/html",'
+            + b'"filename":"crawl/a.warc.gz","offset":"0","length":"10"}\n'
+        )
+
+    class _Session:
+        def __init__(self) -> None:
+            self.urls: list[str] = []
+
+        def get(self, url: str, **kwargs: Any) -> _Response:
+            assert kwargs["headers"]["User-Agent"].startswith("meshagent-commoncrawl/")
+            self.urls.append(url)
+            if "showNumPages=true" in url:
+                return _Response(text='{"pages": 3}')
+            if "page=0" in url:
+                assert "limit=2" in url
+                return _Response(lines=[row("https://example.com/a")])
+            if "page=1" in url:
+                assert "limit=1" in url
+                return _Response(lines=[row("https://example.com/b")])
+            raise AssertionError(f"unexpected URL {url}")
+
+    session = _Session()
+    rows = [
+        row
+        async for row in commoncrawl._iter_index_records(
+            session=session,  # type: ignore[arg-type]
+            index="CC-MAIN-2025-08",
+            domain="example.com",
+            url_filter=None,
+            limit=2,
+            request_delay=0,
+        )
+    ]
+
+    assert [row.url for row in rows] == [
+        "https://example.com/a",
+        "https://example.com/b",
+    ]
+    assert len(session.urls) == 3
+
+
+@pytest.mark.asyncio
+async def test_iter_index_records_reports_503_rate_limit_guidance() -> None:
+    class _Content:
+        def __aiter__(self) -> AsyncIterator[bytes]:
+            return self._iter()
+
+        async def _iter(self) -> AsyncIterator[bytes]:
+            if False:
+                yield b""
+
+    class _Response:
+        status = 503
+        content = _Content()
+
+        async def __aenter__(self) -> _Response:
+            return self
+
+        async def __aexit__(self, *args: object) -> None:
+            return None
+
+        def raise_for_status(self) -> None:
+            raise AssertionError("503 should produce Common Crawl guidance")
+
+    class _Session:
+        def get(self, url: str, **kwargs: Any) -> _Response:
+            del url
+            assert kwargs["headers"]["User-Agent"].startswith("meshagent-commoncrawl/")
+            return _Response()
+
+    with pytest.raises(RuntimeError, match="CDX API returned HTTP 503"):
+        _ = [
+            row
+            async for row in commoncrawl._iter_index_records(
+                session=_Session(),  # type: ignore[arg-type]
+                index="CC-MAIN-2025-08",
+                domain="example.com",
+                url_filter=None,
+                limit=None,
+                request_delay=0,
+                retries=0,
+            )
+        ]

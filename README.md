@@ -26,6 +26,13 @@ The sample command writes progress to stderr while it imports. TTY output uses a
 single updating line; redirected output uses plain log lines. Pass `--silent` to
 suppress progress output.
 
+Common Crawl's CDX API is rate limited. The importer uses
+`https://index.commoncrawl.org`, sends a Meshagent User-Agent, serializes index
+page requests, sleeps between CDX API calls, and reports HTTP 503 responses with
+guidance to slow down or wait before retrying. For broad or high-volume
+filtering, use Common Crawl's columnar index with Athena or Spark instead of the
+CDX API.
+
 By default, records are merged on `url` with the columns `url`, `date`,
 `content_type`, and `text`. Pass an async `extract=` callback to derive custom
 columns from the WARC record and decoded content bytes. Return `None` from the
