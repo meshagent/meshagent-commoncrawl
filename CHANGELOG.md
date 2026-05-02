@@ -1,3 +1,7 @@
+## [0.39.7]
+- Documentation cleanup: removed stale archived Python example agents/services/webserver routes.
+- Documentation cleanup: removed several Python service example entrypoints (browser, document author, presentation author, voice, voice proofreader, voice tools).
+
 ## [0.39.6]
 - CLI help docs generation was rewritten to recursively render command documentation for lazy-loaded Click/Typer command trees, with more robust hidden/deprecated filtering and deterministic command-block generation.
 - CLI help reference generation now normalizes command output to produce stable reference content.
