@@ -1,3 +1,8 @@
+## [0.39.6]
+- CLI help docs generation was rewritten to recursively render command documentation for lazy-loaded Click/Typer command trees, with more robust hidden/deprecated filtering and deterministic command-block generation.
+- CLI help reference generation now normalizes command output to produce stable reference content.
+- Skill package validation now permits missing top-level help command references for `webserver`.
+
 ## [0.39.5]
 - Added Scrapy crawler HTML/content stripping configuration via new `strip` and `strip_order` inputs (including support for stripping `scripts`, `css`, `whitespace`, `clean`, and `image-data-urls`)
 - Changed default behavior for `content_format="html"` to strip `scripts` and inline image data URLs while preserving the rest of the HTML (and updated `--clean` CLI usage to map onto the new stripping configuration)
