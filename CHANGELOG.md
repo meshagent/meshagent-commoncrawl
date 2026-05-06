@@ -1,3 +1,10 @@
+## [0.39.8]
+- Added `rename_table` support to the Python datasets client API (`DatasetsClient.rename_table`) for renaming dataset tables with optional namespace/branch
+- Updated image dataset schema to store the image data column as `large_binary` (instead of `binary`) for newly created datasets
+- Updated scrapy/dataset schema handling to use `large_string` for large compressed text fields (including image `src`/`alt`)
+- CLI: ask-style TUI now supports a configurable assistant label name
+- CLI: `meshagent process use` now routes through a room chat-channel session and streams text deltas into the ask-style TUI
+
 ## [0.39.7]
 - Documentation cleanup: removed stale archived Python example agents/services/webserver routes.
 - Documentation cleanup: removed several Python service example entrypoints (browser, document author, presentation author, voice, voice proofreader, voice tools).
