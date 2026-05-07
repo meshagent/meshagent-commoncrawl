@@ -1,3 +1,11 @@
+## [0.39.9]
+- Added/expanded `meshagent init` and `meshagent doctor` CLI workflows in the Python SDK, including TUI init improvements.
+- Expanded `meshagent doctor` to provide richer, toolchain-aware diagnostics (Python/TypeScript/.NET), including stronger deployment/runtime guidance and missing toolchain detection.
+- Implemented dataset table rename support and SDK dataset toolkit support for renamed dataset handling.
+- Improved dataset path restoration and dataset-backed conversation handling in the SDK.
+- Implemented dataset thread storage in the SDK, including dataset thread storage/watch plumbing for dataset-scoped conversation threads.
+- Added SDK wiring for error reporting and transaction reconciliation-related CLI behavior.
+
 ## [0.39.8]
 - Added `rename_table` support to the Python datasets client API (`DatasetsClient.rename_table`) for renaming dataset tables with optional namespace/branch
 - Updated image dataset schema to store the image data column as `large_binary` (instead of `binary`) for newly created datasets
