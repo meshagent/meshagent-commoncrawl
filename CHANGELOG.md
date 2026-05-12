@@ -1,3 +1,10 @@
+## [0.40.0]
+- Added realtime model selection, audio modality, and protocol negotiation support across the Python agents, CLI, OpenAI, and Anthropic adapters.
+- Reworked ask/process and dataset/thread handling to support new-thread loading, multi-user TUI flows, richer status reporting, and friendlier tool summaries.
+- Improved crawler, roompool, and offline-wait behavior for local routing and cached room provisioning.
+- Added `sounddevice~=0.5` to the CLI dependency set.
+- Removed the restored agent event metadata mirror, so downstream consumers now rely on the canonical event metadata source.
+
 ## [0.39.9]
 - Added/expanded `meshagent init` and `meshagent doctor` CLI workflows in the Python SDK, including TUI init improvements.
 - Expanded `meshagent doctor` to provide richer, toolchain-aware diagnostics (Python/TypeScript/.NET), including stronger deployment/runtime guidance and missing toolchain detection.
