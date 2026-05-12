@@ -1,3 +1,6 @@
+## [0.40.1]
+- Stability
+
 ## [0.40.0]
 - Added realtime model selection, audio modality, and protocol negotiation support across the Python agents, CLI, OpenAI, and Anthropic adapters.
 - Reworked ask/process and dataset/thread handling to support new-thread loading, multi-user TUI flows, richer status reporting, and friendlier tool summaries.
