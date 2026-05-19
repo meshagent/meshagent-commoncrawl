@@ -1,3 +1,19 @@
+## [0.41.0]
+- Managed-agent support now includes thread listing, thread create/update/delete events, attachment names, and sender-name trust for chat input.
+- Websocket process support now uses `/messages`, adds `jwt`/`iap`/`none` auth modes, and supports websocket-based `process use` sessions.
+- Route handling now uses the spec-based route model and supports room or agent backends.
+- The CLI gained new agent/process/route flows, removed the `codex` command, and added `ascii-magic~=2.3`, `pillow~=11.3.0`, and `msgpack~=1.1`.
+- Managed-agent storage and shell toolkits were removed from the public managed-agent surface.
+- OpenAI, Anthropic, browser, computer, and toolkit helpers were updated to work with the new managed-agent and client-toolkit plumbing.
+- Fixed thread storage, chat replay, and process shutdown races.
+
+## [0.40.3]
+- Added managed-agent spec and API models covering allowed models, toolkits, secrets, MCP servers, thread isolation, agent/room grants, and agent session listing.
+- Route APIs now use `RouteSpec` with room or agent backends and preserve compatibility with legacy route payloads.
+- Chat and channel code now supports websocket transport, participant connect/disconnect events, sender-name propagation, and attachment-aware thread start/load flows.
+- Added a new `create` scaffolder with Dart, .NET, JavaScript, Python, React, and TypeScript templates, replacing the old `init`/Codex entrypoints.
+- Added CLI dependencies on `ascii-magic~=2.3` and `pillow~=11.3.0`.
+
 ## [0.40.2]
 - Stability
 
