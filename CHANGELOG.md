@@ -1,3 +1,8 @@
+## [0.41.1]
+- Python feed subscription APIs and CLI commands now support an optional `filename_datetime_format`, and listing shows the stored value.
+- The create workflow now prints a `cd` hint for new subfolders and blocks reusing an already occupied nested folder.
+- Image deploys now preserve Dockerfile default environment values and clear the newly built image from the room cache after a successful build.
+
 ## [0.41.0]
 - Managed-agent support now includes thread listing, thread create/update/delete events, attachment names, and sender-name trust for chat input.
 - Websocket process support now uses `/messages`, adds `jwt`/`iap`/`none` auth modes, and supports websocket-based `process use` sessions.
