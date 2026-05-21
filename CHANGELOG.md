@@ -1,3 +1,9 @@
+## [0.41.2]
+- `meshagent create` now uses clearer stable focus IDs and labels, adds an Anthropic chatbot option, and prints grouped next steps plus agent-toolkit deploy guidance for backend-agent templates.
+- `meshagent rooms list` now defaults to rooms the current user can access, with `--all` to switch back to listing every room in the project.
+- Deploy-room prompting now derives the Pages suffix from the configured API host, pre-fills a room-based subdomain, and validates subdomain-only input before constructing the final public domain.
+- The CLI chat and process runtime now centralize turn-toolkit assembly and thread-list tooling through the supervisor, while websocket chat sessions keep web participants aligned with the base participant identity for on-behalf-of access.
+
 ## [0.41.1]
 - Python feed subscription APIs and CLI commands now support an optional `filename_datetime_format`, and listing shows the stored value.
 - The create workflow now prints a `cd` hint for new subfolders and blocks reusing an already occupied nested folder.
