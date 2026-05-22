@@ -1,3 +1,10 @@
+## [0.41.4]
+- `ChatThreadSession` now exposes thread-start, turn-steer, and interrupt workflows, along with richer pending-input state and active-turn tracking for acceptance, application, and rejection events.
+- Container and service models now support a `template` value (`agent` or `none`), and container runs can opt into that template to receive the standard agent runtime environment and mount defaults.
+
+## [0.41.3]
+- Stability
+
 ## [0.41.2]
 - `meshagent create` now uses clearer stable focus IDs and labels, adds an Anthropic chatbot option, and prints grouped next steps plus agent-toolkit deploy guidance for backend-agent templates.
 - `meshagent rooms list` now defaults to rooms the current user can access, with `--all` to switch back to listing every room in the project.
