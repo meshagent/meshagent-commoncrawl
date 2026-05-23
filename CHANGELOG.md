@@ -1,3 +1,9 @@
+## [0.41.6]
+- Added deploy-ready project scaffolding and the Python contact-form starter, including deploy/dev/install scripts and generated deployment links.
+- Improved CLI ask/deploy flows with room selection, domain entry, service lookup, and template-variable prompts.
+- Extended the Python API client and cloud router to resolve services by name in both project and room scopes.
+- Added attachment-aware signed download URLs across the Python storage stack so files can be served inline or as forced downloads.
+
 ## [0.41.5]
 - Stability
 
