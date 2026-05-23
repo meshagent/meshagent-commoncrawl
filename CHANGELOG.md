@@ -1,3 +1,8 @@
+## [0.41.7]
+- Deployment config models now carry optional server version metadata, allowing API consumers to read the server version from config responses.
+- CLI config lookup now supports returning the deployment version, and the version command now prints both client and server versions.
+- The CLI startup path now performs a best-effort server version check and emits a one-time warning when the CLI is behind the server.
+
 ## [0.41.6]
 - Added deploy-ready project scaffolding and the Python contact-form starter, including deploy/dev/install scripts and generated deployment links.
 - Improved CLI ask/deploy flows with room selection, domain entry, service lookup, and template-variable prompts.
