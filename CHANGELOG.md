@@ -1,3 +1,7 @@
+## [0.41.10]
+- Breaking change: several resource lookup commands now use `get` instead of `show`, including API keys, feeds, LLM loggers, mailboxes, registries, routes, services, sessions, storage, and subscriptions.
+- Added `get` commands for projects, dataset branches, and webhooks, plus a `get` alias for memory inspection.
+
 ## [0.41.9]
 - Deployment config models now carry an optional server version, and `meshagent config get version` can surface it.
 - `meshagent` now performs a best-effort startup version check, warns when the installed client is older than the server, and `meshagent version` reports both client and server versions instead of the previous raw version string, so scripts that parse the old output need to update.
