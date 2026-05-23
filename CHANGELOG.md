@@ -1,3 +1,10 @@
+## [0.41.9]
+- Deployment config models now carry an optional server version, and `meshagent config get version` can surface it.
+- `meshagent` now performs a best-effort startup version check, warns when the installed client is older than the server, and `meshagent version` reports both client and server versions instead of the previous raw version string, so scripts that parse the old output need to update.
+
+## [0.41.8]
+- Stability
+
 ## [0.41.7]
 - Deployment config models now carry optional server version metadata, allowing API consumers to read the server version from config responses.
 - CLI config lookup now supports returning the deployment version, and the version command now prints both client and server versions.
