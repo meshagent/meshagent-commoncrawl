@@ -1,3 +1,10 @@
+## [0.42.0]
+- Added project lookup by key.
+- Service and route specs now support container templates, `host_port`, and `stripPrefix`; route-path serialization omits `stripPrefix` when it is false.
+- Room/container responses now expose structured port mappings instead of bare integers, which is a breaking shape change for container listings.
+- Room creation and room-service helpers now carry annotations and permissions through the API.
+- Container creation and room-client helpers now accept the `template` option.
+
 ## [0.41.10]
 - Breaking change: several resource lookup commands now use `get` instead of `show`, including API keys, feeds, LLM loggers, mailboxes, registries, routes, services, sessions, storage, and subscriptions.
 - Added `get` commands for projects, dataset branches, and webhooks, plus a `get` alias for memory inspection.
