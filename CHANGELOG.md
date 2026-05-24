@@ -1,3 +1,8 @@
+## [0.42.1]
+- Deploy liveness checks now treat `401` and `403` responses as live, improving detection for protected endpoints.
+- Deploy log streaming now cancels background log and progress tasks cleanly on exit, avoiding hangs during shutdown.
+- Deploy TUI now supports copying selected text or the full deploy log buffer to the clipboard.
+
 ## [0.42.0]
 - Added project lookup by key.
 - Service and route specs now support container templates, `host_port`, and `stripPrefix`; route-path serialization omits `stripPrefix` when it is false.
