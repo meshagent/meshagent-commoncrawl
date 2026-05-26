@@ -1,3 +1,9 @@
+## [0.42.2]
+- Added `wait_for_exit_status` and richer container/build models, exposing image IDs, runtime stats, published build image digests, and detailed exit status information while keeping the existing integer exit-code helper.
+- The deploy flow now resolves completed builds to published digests, rewrites deploy plans to use the resolved image reference, and cleans up replaced built images after successful deploys.
+- Room client shutdown is now cancellation-safe, so protocol teardown completes even if exit is cancelled mid-close.
+- CLI API URL resolution now prefers `MESHAGENT_API_URL` before the persisted active URL, matching the explicit environment override users expect.
+
 ## [0.42.1]
 - Deploy liveness checks now treat `401` and `403` responses as live, improving detection for protected endpoints.
 - Deploy log streaming now cancels background log and progress tasks cleanly on exit, avoiding hangs during shutdown.
