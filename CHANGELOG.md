@@ -1,3 +1,6 @@
+## [0.43.3]
+- Stability
+
 ## [0.43.2]
 - Added backend-aware fields across agent messages and chat/session APIs in `meshagent-agents`, enabling multi-backend conversations, model changes, and room/thread opening flows.
 - Breaking: `meshagent-codex` was reorganized around a dedicated process, supervisor, and thread-storage stack, so the old internal process/chat wiring moved.
