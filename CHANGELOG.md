@@ -1,3 +1,10 @@
+## [0.43.2]
+- Added backend-aware fields across agent messages and chat/session APIs in `meshagent-agents`, enabling multi-backend conversations, model changes, and room/thread opening flows.
+- Breaking: `meshagent-codex` was reorganized around a dedicated process, supervisor, and thread-storage stack, so the old internal process/chat wiring moved.
+- Removed the mandatory Codex binary wheel dependency and vendored the OpenAI Codex client into `meshagent-codex`.
+- Added thread inspection and thread-storage diagnostics for Codex sessions, along with no-room process mode and improved inline attachment handling in the CLI.
+- Added IAP websocket support in `meshagent-api`, including nullable tokens, `withIAP()`, and Authorization-header based connections.
+
 ## [0.43.1]
 - Added IAP room websocket support in the SDK chat and channel stack.
 - Reworked the CLI around a unified process backend and Codex integration, replacing the older Codex-specific launch path and changing thread loading semantics.
