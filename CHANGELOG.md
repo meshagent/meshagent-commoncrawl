@@ -1,3 +1,10 @@
+## [0.43.1]
+- Added IAP room websocket support in the SDK chat and channel stack.
+- Reworked the CLI around a unified process backend and Codex integration, replacing the older Codex-specific launch path and changing thread loading semantics.
+- Added multi-backend support, the Codex thread-storage repository and diagnostics, and managed thread-storage fixes so threads can be loaded, renamed, and deleted through the new repository flow.
+- Added TUI image attachment support with `textual-image[textual]~=0.12.0`.
+- Removed the hard dependency on the Codex binary wheel.
+
 ## [0.43.0]
 - `meshagent-agents` now supports backend-aware multi-backend supervision, with backend metadata in thread/model messages, attachment-aware prompts, and backend-aware thread/model/realtime-audio operations.
 - `meshagent-codex` was split into a dedicated process, supervisor, and thread-storage stack and now vendors `openai_codex`, with a new `meshagent-openai==0.42.2` dependency.
