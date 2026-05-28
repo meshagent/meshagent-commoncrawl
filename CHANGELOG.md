@@ -1,3 +1,10 @@
+## [0.43.0]
+- `meshagent-agents` now supports backend-aware multi-backend supervision, with backend metadata in thread/model messages, attachment-aware prompts, and backend-aware thread/model/realtime-audio operations.
+- `meshagent-codex` was split into a dedicated process, supervisor, and thread-storage stack and now vendors `openai_codex`, with a new `meshagent-openai==0.42.2` dependency.
+- `meshagent-cli` now uses Typer consistently, adds lazy command loading, image/PDF/file paste-and-drop handling for `ask`, thread-sidebar controls, and improved `doctor`, `create`, and deploy-room workflows, including new room-workspace and meeting templates.
+- `meshagent-openai` now preserves image-generation call inputs and emits structured image-generation results, and the LLM proxy and agent server websocket auth path now accept the `meshagent-agent.` token prefix.
+- Third-party dependency updates include `textual-image[textual]~=0.12.0` for inline image rendering.
+
 ## [0.42.2]
 - Added `wait_for_exit_status` and richer container/build models, exposing image IDs, runtime stats, published build image digests, and detailed exit status information while keeping the existing integer exit-code helper.
 - The deploy flow now resolves completed builds to published digests, rewrites deploy plans to use the resolved image reference, and cleans up replaced built images after successful deploys.
