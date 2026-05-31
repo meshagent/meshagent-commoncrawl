@@ -1,3 +1,9 @@
+## [0.43.4]
+- Public room toolkit metadata now preserves annotations end-to-end, and the SDK exports tool-search metadata for consumers that need to discover searchable tools.
+- Tool listings now round-trip annotations alongside tools and participant IDs, so extra toolkit metadata is no longer lost when clients read or write it.
+- Agent and room message handling now keeps `created_at` timestamps through streamed deltas and live thread updates, improving ordering and replay consistency.
+- Responses integration now supports tool namespaces and search across the Python agent tooling stack.
+
 ## [0.43.3]
 - Stability
 
