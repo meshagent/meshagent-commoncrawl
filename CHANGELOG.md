@@ -1,3 +1,6 @@
+## [0.44.1]
+- Stability
+
 ## [0.44.0]
 - Python agent processes now support multiple thread storages, thread watch/unwatch flows, and storage-aware list/view routing for thread lifecycle operations.
 - Thread startup now preserves better thread naming and metadata, including fallback names derived from message content and attachments when no explicit name is provided.
