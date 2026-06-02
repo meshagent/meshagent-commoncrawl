@@ -1,3 +1,9 @@
+## [0.44.2]
+- Base chat clients now expose an async event stream for consuming emitted agent payloads alongside listener callbacks.
+- Messaging chat clients now distinguish first connect from reconnect, track participant add/remove events, and reopen open sessions when the agent returns.
+- Restored session context now resolves stored room file URLs into inline attachments, including PDF and image handling for OpenAI- and Anthropic-style message content.
+- Fresh turns no longer trigger redundant storage restoration when there is no prior thread history.
+
 ## [0.44.1]
 - Stability
 
