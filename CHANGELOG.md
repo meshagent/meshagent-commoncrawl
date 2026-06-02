@@ -1,3 +1,6 @@
+## [0.44.3]
+- Stability
+
 ## [0.44.2]
 - Base chat clients now expose an async event stream for consuming emitted agent payloads alongside listener callbacks.
 - Messaging chat clients now distinguish first connect from reconnect, track participant add/remove events, and reopen open sessions when the agent returns.
