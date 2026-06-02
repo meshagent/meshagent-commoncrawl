@@ -1,3 +1,9 @@
+## [0.44.0]
+- Python agent processes now support multiple thread storages, thread watch/unwatch flows, and storage-aware list/view routing for thread lifecycle operations.
+- Thread startup now preserves better thread naming and metadata, including fallback names derived from message content and attachments when no explicit name is provided.
+- Managed-agent server code now creates thread metadata earlier and persists thread naming information consistently through websocket-driven lifecycles.
+- Single-room and Codex orchestration now avoid unnecessary toolkit-discovery waits and improve startup latency and initialization behavior.
+
 ## [0.43.4]
 - Public room toolkit metadata now preserves annotations end-to-end, and the SDK exports tool-search metadata for consumers that need to discover searchable tools.
 - Tool listings now round-trip annotations alongside tools and participant IDs, so extra toolkit metadata is no longer lost when clients read or write it.
