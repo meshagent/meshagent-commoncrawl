@@ -1,3 +1,7 @@
+## [0.44.6]
+- Breaking: Codex setup now uses a single default-provider flow and removes the older multi-profile conflict/update screens.
+- Codex setup now detects all MeshAgent-managed Codex configs instead of only the active project or API host, so stale configs can be updated or removed during setup.
+
 ## [0.44.5]
 - OpenAI completions now emit structured assistant text and tool-call lifecycle events, including arguments and results, so consumers can reconstruct streamed assistant and tool activity.
 - Reasoning-end events are now preserved even when no active reasoning buffer exists, as long as metadata is available, which restores reasoning dataset replay.
