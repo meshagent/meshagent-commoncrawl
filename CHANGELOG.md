@@ -1,3 +1,10 @@
+## [0.44.4]
+- Breaking: `AgentSessionContext` no longer exposes `previous_messages` or `previous_response_id`; restore flows now operate from the current `messages` payload instead of maintaining a separate history buffer.
+- OpenAI Responses restore now preserves encrypted reasoning metadata, normalizes legacy reasoning items, and forces stateless requests to use `store=False` while replaying the current context.
+- Agent event handling and dataset thread storage now keep reasoning provider/model metadata so empty reasoning items with encrypted content can still be restored without losing the payload.
+- Managed agents now share the `llm` backend abstraction, which changes thread creation and resume behavior and lets thread naming consider the selected provider/model plus audio attachments.
+- Updated `typer` to `~=0.26.6`.
+
 ## [0.44.3]
 - Stability
 
