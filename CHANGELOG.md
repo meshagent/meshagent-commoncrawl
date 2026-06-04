@@ -1,3 +1,8 @@
+## [0.44.5]
+- OpenAI completions now emit structured assistant text and tool-call lifecycle events, including arguments and results, so consumers can reconstruct streamed assistant and tool activity.
+- Reasoning-end events are now preserved even when no active reasoning buffer exists, as long as metadata is available, which restores reasoning dataset replay.
+- OpenAI response handling now includes all structured output items instead of only message and compaction items, improving replay coverage for additional response types.
+
 ## [0.44.4]
 - Breaking: `AgentSessionContext` no longer exposes `previous_messages` or `previous_response_id`; restore flows now operate from the current `messages` payload instead of maintaining a separate history buffer.
 - OpenAI Responses restore now preserves encrypted reasoning metadata, normalizes legacy reasoning items, and forces stateless requests to use `store=False` while replaying the current context.
