@@ -1,3 +1,6 @@
+## [0.44.7]
+- Realtime websocket sessions now expand nested namespace toolkits into individual function tools, improving support for live tool advertising in OpenAI realtime flows.
+
 ## [0.44.6]
 - Breaking: Codex setup now uses a single default-provider flow and removes the older multi-profile conflict/update screens.
 - Codex setup now detects all MeshAgent-managed Codex configs instead of only the active project or API host, so stale configs can be updated or removed during setup.
