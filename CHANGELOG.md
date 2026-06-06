@@ -1,3 +1,6 @@
+## [0.44.8]
+- Stability
+
 ## [0.44.7]
 - Realtime websocket sessions now expand nested namespace toolkits into individual function tools, improving support for live tool advertising in OpenAI realtime flows.
 
