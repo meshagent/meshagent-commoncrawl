@@ -1,3 +1,10 @@
+## [0.44.12]
+- Added generated project support flows across the SDK Python CLI and API, including visible-room selection, deploy helpers, and broader create-template coverage.
+- Expanded generated Python app templates with a new task queue dashboard app, simpler install/dev scripts, and safer contact-form and mailbox delivery behavior.
+- Added session log and metrics CLI commands, plus support helpers for `SingleRoomAgent` and toolkit annotation preservation in room listings.
+- Fixed OpenAI shell-output restoration and corrected audio transcription pricing and reasoning-token accounting.
+- Improved template and deployment robustness with stale deploy-value handling and other create-flow hardening.
+
 ## [0.44.11]
 - Stability
 
