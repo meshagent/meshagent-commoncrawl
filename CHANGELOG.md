@@ -1,3 +1,6 @@
+## [0.44.13]
+- Stability
+
 ## [0.44.12]
 - Added generated project support flows across the SDK Python CLI and API, including visible-room selection, deploy helpers, and broader create-template coverage.
 - Expanded generated Python app templates with a new task queue dashboard app, simpler install/dev scripts, and safer contact-form and mailbox delivery behavior.
