@@ -1,3 +1,11 @@
+## [0.45.0]
+- Added `whoami` support plus typed `ServiceAccount.email` and `Whoami` responses in the API client.
+- Exposed service runtime startup errors and lifecycle events through room service state responses.
+- Added `pull_secret` to container specs and tightened secret validation to id-only payloads, breaking legacy secret objects.
+- Expanded the room-services CLI with a `describe` command and richer list output that includes runtime events, and updated image deploy cleanup to run after deploy completion.
+- Removed the `thread_adapter` alias, require `thread_storage`, and switched queue targeting to `path` instead of `thread_id`, which is a breaking change for existing agent integrations.
+- Improved dataset tooling and OpenAI code-interpreter handling, including Python-compatible row formatting, binary row support, and correct log/file aggregation.
+
 ## [0.44.13]
 - Stability
 
