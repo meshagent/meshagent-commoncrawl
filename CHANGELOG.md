@@ -1,3 +1,6 @@
+## [0.45.5]
+- Shell command analysis now handles mixed absolute and dynamic write targets more safely, keeping generated file previews and path grouping accurate.
+
 ## [0.45.4]
 - Stability
 
