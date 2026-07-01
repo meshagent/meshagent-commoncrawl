@@ -1,3 +1,11 @@
+## [0.45.2]
+- Added `whoami`, typed `ServiceAccount.email`, and service-account `view` filtering, and hardened shared HTTP session creation with certifi-backed TLS, optional host aliases, and an extra CA bundle.
+- Exposed service runtime startup errors and event histories through room service state responses.
+- Added `pull_secret` to service container specs and enforced id-only secret payloads, which is a breaking change for older named-secret service specs.
+- Updated agent chat and thread handling to consume direct payload envelopes, clean outbound metadata, and align completions/thread behavior with the newer message shape.
+- Expanded OpenAI, Anthropic, CLI, and tool parity so web fetch/grep, HTML-to-Markdown, regex handling, data URLs, Docker subprocesses, and MCP/web tool behavior more closely match Python semantics.
+- Removed deprecated compatibility aliases around thread adapters and managed-agent exports, and updated related tests and package wiring accordingly.
+
 ## [0.45.1]
 - `meshagent.api` now supports `view` on service-account listing, and the shared HTTP helper uses certifi-backed TLS with optional host aliases and an extra CA bundle.
 - The CLI image and deploy helpers now preserve digest-pinned published refs, canonicalize image mounts, and use personal-room paging for room-connect flows.
