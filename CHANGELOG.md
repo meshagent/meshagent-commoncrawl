@@ -1,3 +1,9 @@
+## [0.45.1]
+- `meshagent.api` now supports `view` on service-account listing, and the shared HTTP helper uses certifi-backed TLS with optional host aliases and an extra CA bundle.
+- The CLI image and deploy helpers now preserve digest-pinned published refs, canonicalize image mounts, and use personal-room paging for room-connect flows.
+- Web, dataset, script, and computer tooling were tightened to match Python semantics more closely for filename inference, charset decoding, HTML-to-Markdown conversion, regex behavior, environment-variable handling, and Docker subprocess execution.
+- OpenAI, Anthropic, and agent abstractions gained parity updates for threaded channels, completions/response streaming, and raw-output handling.
+
 ## [0.45.0]
 - Added `whoami` support plus typed `ServiceAccount.email` and `Whoami` responses in the API client.
 - Exposed service runtime startup errors and lifecycle events through room service state responses.
