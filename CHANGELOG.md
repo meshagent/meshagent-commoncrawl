@@ -1,3 +1,15 @@
+## [0.45.4]
+- Stability
+
+## [0.45.3]
+- Added `whoami`, typed `ServiceAccount.email`, and service-account `view` filtering.
+- Hardened shared HTTP session creation with certifi-backed TLS, optional host aliases, and an extra CA bundle.
+- Exposed service runtime startup errors and event histories through room service-state responses.
+- Added `pull_secret` support for service container specs and enforced id-only secret payloads, breaking older named-secret service specs.
+- Updated agent chat and thread handling to consume direct payload envelopes, clean outbound metadata, and match the newer completion/thread message shape.
+- Expanded OpenAI, Anthropic, CLI, and tool parity so web fetch/grep, HTML-to-Markdown, regex handling, data URLs, Docker subprocesses, and MCP/web tool behavior more closely match Python semantics.
+- Removed deprecated compatibility aliases around thread adapters and managed-agent exports.
+
 ## [0.45.2]
 - Added `whoami`, typed `ServiceAccount.email`, and service-account `view` filtering, and hardened shared HTTP session creation with certifi-backed TLS, optional host aliases, and an extra CA bundle.
 - Exposed service runtime startup errors and event histories through room service state responses.
