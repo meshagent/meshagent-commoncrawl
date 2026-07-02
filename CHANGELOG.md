@@ -1,3 +1,9 @@
+## [0.45.6]
+- Added strict dataset prompt rendering with escaped-brace support and simple field placeholders, replacing generic `str.format` expansion.
+- Tightened OpenAI adapter handling so code-interpreter results must be structured objects with required string fields, and invalid payloads now error out earlier.
+- Aligned computer/browser tooling with Python behavior for Browserbase setup, Docker geometry handling, and optional rule initialization.
+- Synchronized Python package dependencies and release metadata across the API, agents, CLI, OpenAI, tools, computers, codex, and related companion packages.
+
 ## [0.45.5]
 - Shell command analysis now handles mixed absolute and dynamic write targets more safely, keeping generated file previews and path grouping accurate.
 
