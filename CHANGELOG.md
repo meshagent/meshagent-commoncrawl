@@ -1,3 +1,11 @@
+## [0.45.7]
+- Tightened container-shell input validation and managed-container parsing so malformed `commands`, `container_id`, `env`, and timeout fields fail fast with clearer errors.
+- Changed container mount merging to stop carrying project mounts into the merged shell mount spec.
+- Improved tool hosting error mapping and remote-tool message validation so invalid payloads surface as invalid-request errors.
+- Simplified the image pack/build flow and changed default image tagging so non-BuildKit images use the `-nydus` suffix while BuildKit and Playwright defaults keep the plain version tag.
+- Adjusted computer automation to preserve blocked-URL handling correctly and fixed async mouse drag execution in Docker-backed computers.
+- Made memory-toolkit and remote graph loading more resilient when using remote storage roots and room-local API endpoints.
+
 ## [0.45.6]
 - Added strict dataset prompt rendering with escaped-brace support and simple field placeholders, replacing generic `str.format` expansion.
 - Tightened OpenAI adapter handling so code-interpreter results must be structured objects with required string fields, and invalid payloads now error out earlier.
