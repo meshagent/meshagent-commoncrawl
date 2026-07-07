@@ -1,3 +1,6 @@
+## [0.46.0]
+- Stability
+
 ## [0.45.9]
 - Breaking change: `SecretVersion.encryption_key_id` was removed from the generated API model and cloud resource records.
 - Room service APIs now return typed runtime status, including `list_with_state()`, `ServiceRuntimeStatus`, and `ServicePortRuntimeState`, so clients can inspect per-port liveness.
