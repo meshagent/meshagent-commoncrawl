@@ -3,7 +3,7 @@
 
 ## [0.45.9]
 - Breaking change: `SecretVersion.encryption_key_id` was removed from the generated API model and cloud resource records.
-- Room service APIs now return typed runtime status, including `list_with_state()`, `ServiceRuntimeStatus`, and `ServicePortRuntimeState`, so clients can inspect per-port liveness.
+- Room service APIs now return typed runtime status, including `list()`, `ServiceRuntimeStatus`, and `ServicePortRuntimeState`, so clients can inspect per-port liveness.
 - CLI room helpers now honor the room URL returned by the connection, `MESHAGENT_ROOM_URL` can override it, room-service output includes port liveness, and session list/traces can emit JSON for automation.
 - Document runtime and schema loading now preserve property metadata and route sync callbacks through the active runtime instance.
 - Playwright automation is more resilient, with stale-container recreation, longer startup/connect attempts, and clearer startup/reconnect progress.
