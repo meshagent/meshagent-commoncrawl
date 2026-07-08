@@ -1,3 +1,6 @@
+## [0.46.2]
+- Python SDK project models now support mapping-style field checks and indexing, making `ProjectInfo` and `ProjectsPage` easier to use with `in` and `[]` access patterns.
+
 ## [0.46.1]
 - Breaking change: `ServicesClient.list()` now returns the combined services-and-runtime-state result instead of a bare service list, so callers that only need service definitions must read the `services` field.
 
