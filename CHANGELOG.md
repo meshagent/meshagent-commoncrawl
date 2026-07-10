@@ -1,3 +1,9 @@
+## [0.46.3]
+- Process, task-runner, and worker defaults now use `gpt-5.6-sol`, and process model and thread-storage normalization now raises proper CLI parameter errors instead of generic value errors.
+- Process specs now emit stable YAML and use the renamed `--require-document-authoring` room requirement flag.
+- Queue send now reads `--file` input as JSON text, and setup and project loading now honor explicit API URL overrides.
+- OpenAI pricing and usage accounting now cover GPT-5.6, GPT-5.5 Pro, and GPT-5.4 Pro families, including cache-write tokens, long-context pricing, and the `1,050,000`-token GPT-5.6 context window.
+
 ## [0.46.2]
 - Python SDK project models now support mapping-style field checks and indexing, making `ProjectInfo` and `ProjectsPage` easier to use with `in` and `[]` access patterns.
 
