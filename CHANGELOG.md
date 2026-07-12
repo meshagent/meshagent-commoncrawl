@@ -1,3 +1,6 @@
+## [0.46.4]
+- Stability
+
 ## [0.46.3]
 - Process, task-runner, and worker defaults now use `gpt-5.6-sol`, and process model and thread-storage normalization now raises proper CLI parameter errors instead of generic value errors.
 - Process specs now emit stable YAML and use the renamed `--require-document-authoring` room requirement flag.
