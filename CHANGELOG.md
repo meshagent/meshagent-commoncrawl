@@ -1,5 +1,11 @@
-## [0.46.4]
-- Stability
+## [0.47.0]
+- Added command-hosted Python channel integrations and shipped new Slack, Telegram, Twilio, and WhatsApp templates with deploy/configuration scripts.
+- Added command-hosted agent channels and new Python CLI entry points for chat, mail, queue, and toolkit flows.
+- Hardened thread persistence, replay, readiness, and client-tool routing so restored sessions and process-managed backends recover cleanly.
+- Added OpenAI file-input MIME type support and exposed Lance dataset JSON as JSONB.
+- Added website serving and publishing support, plus published-template discovery fixes.
+- Finished aligning Python CLI list pagination behavior across agents, feeds, rooms, mailboxes, and scheduled tasks.
+- Added `hypothesis` 6.156.4 to the Python agents test extras.
 
 ## [0.46.3]
 - Process, task-runner, and worker defaults now use `gpt-5.6-sol`, and process model and thread-storage normalization now raises proper CLI parameter errors instead of generic value errors.
