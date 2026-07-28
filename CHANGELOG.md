@@ -1,3 +1,9 @@
+## [0.47.1]
+- Added OpenAI image generation support, including response-adapter handling for image inputs and `pillow~=11.3.0` for image processing.
+- Added duplex messaging stream subscriptions and aligned replay and pending-state handling across the Python chat clients and room server client, preserving close errors and ordered dispatch.
+- Updated room access and token validation for site-only rooms and removed legacy room OpenAI and Anthropic proxy URL handling from room-connect flows.
+- Pinned Ruff for Python checks.
+
 ## [0.47.0]
 - Added command-hosted Python channel integrations and shipped new Slack, Telegram, Twilio, and WhatsApp templates with deploy/configuration scripts.
 - Added command-hosted agent channels and new Python CLI entry points for chat, mail, queue, and toolkit flows.
