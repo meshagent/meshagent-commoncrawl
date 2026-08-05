@@ -1,3 +1,11 @@
+## [0.48.0]
+- Added Python client support for device sessions, storage volumes, and room-server APIs.
+- Added CLI commands for mounting and managing storage volumes, with matching tests and helper plumbing.
+- Reworked agent message processing so threaded proxy channels, injected messages, and restored history stay ordered across adapters.
+- Introduced new Python starter templates for backend agents, web servers, contact forms, and task-queue dashboards.
+- Fixed OpenAI adapter context restoration and meshagent API import handling, and refreshed Python package dependencies for the new client surface.
+- Improved the Python LLM proxy pricing and local integration behavior.
+
 ## [0.47.1]
 - Added OpenAI image generation support, including response-adapter handling for image inputs and `pillow~=11.3.0` for image processing.
 - Added duplex messaging stream subscriptions and aligned replay and pending-state handling across the Python chat clients and room server client, preserving close errors and ordered dispatch.
