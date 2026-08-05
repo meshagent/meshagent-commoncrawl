@@ -1,3 +1,6 @@
+## [0.48.1]
+- Stability
+
 ## [0.48.0]
 - Added Python client support for device sessions, storage volumes, and room-server APIs.
 - Added CLI commands for mounting and managing storage volumes, with matching tests and helper plumbing.
