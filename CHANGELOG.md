@@ -1,3 +1,9 @@
+## [0.49.0]
+- Breaking: `create_project` no longer accepts inline settings; project settings are now per-document APIs with `room_roles` support.
+- Route specs now support content-backed room routes with CORS, compression, index, and IAP controls, and route paths require exactly one target.
+- Added CLI support for setting and resetting project room roles from YAML, plus richer route create/update flags for folder-backed routes and multi-path editing.
+- Added `guest` to `RoomRole` and a client-level `Consistency` mode (`fast` or `high`) for authorization-sensitive requests.
+
 ## [0.48.1]
 - Stability
 
