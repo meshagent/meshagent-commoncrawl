@@ -1,3 +1,6 @@
+## [0.49.1]
+- Stability
+
 ## [0.49.0]
 - Breaking: `create_project` no longer accepts inline settings; project settings are now per-document APIs with `room_roles` support.
 - Route specs now support content-backed room routes with CORS, compression, index, and IAP controls, and route paths require exactly one target.
