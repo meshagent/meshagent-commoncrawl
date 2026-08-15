@@ -1,3 +1,9 @@
+## [0.50.0]
+- The Python client now exposes `connect_llm`, LLM quota APIs, `llm_quota_manager`, optional access-subject IDs, and room and service enabled state.
+- Room connections now raise a dedicated disabled-room error, and managed agents can opt into per-turn LLM delegation through the new `--llm-delegation` CLI flag and `llm_proxy` runtime scopes.
+- CLI room and service commands now expose enable and disable controls and report enabled state.
+- OpenAI, Anthropic, and agent-process adapters now propagate LLM authorization through realtime, completions, and responses flows and treat attachment-only inputs as visible content.
+
 ## [0.49.1]
 - Stability
 
