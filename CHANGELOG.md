@@ -1,3 +1,8 @@
+## [0.50.1]
+- Added Grok as a first-class provider in the Python SDK: project settings, LLM delegation grants, managed-agent model types, and the CLI/runtime now recognize Grok models and route them through the correct base URL.
+- Extended the Python LLM proxy to support Grok endpoints, Grok-specific usage extraction and pricing, and preservation of repeated upstream response headers.
+- Updated process and chatbot runtimes to propagate Grok environment configuration and to resolve Grok base URLs from `GROK_BASE_URL` or `XAI_BASE_URL`.
+
 ## [0.50.0]
 - The Python client now exposes `connect_llm`, LLM quota APIs, `llm_quota_manager`, optional access-subject IDs, and room and service enabled state.
 - Room connections now raise a dedicated disabled-room error, and managed agents can opt into per-turn LLM delegation through the new `--llm-delegation` CLI flag and `llm_proxy` runtime scopes.
