@@ -1,3 +1,6 @@
+## [0.51.1]
+- Storage commands now use the canonical room name returned by account lookup when opening websocket connections, so case-insensitive room names resolve consistently across storage operations.
+
 ## [0.51.0]
 - The Python SDK and CLI now expose mailbox delivery tracking and stable room lifecycle diagnostics through the public client surface.
 - Expanded the OpenAI Responses adapter to better normalize response payloads, tool handling, and streaming behavior.
