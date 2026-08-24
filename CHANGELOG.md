@@ -1,3 +1,8 @@
+## [0.51.0]
+- The Python SDK and CLI now expose mailbox delivery tracking and stable room lifecycle diagnostics through the public client surface.
+- Expanded the OpenAI Responses adapter to better normalize response payloads, tool handling, and streaming behavior.
+- Refined the Python CLI process launcher and project bootstrap flow for the refreshed Flutter/provider stack.
+
 ## [0.50.1]
 - Added Grok as a first-class provider in the Python SDK: project settings, LLM delegation grants, managed-agent model types, and the CLI/runtime now recognize Grok models and route them through the correct base URL.
 - Extended the Python LLM proxy to support Grok endpoints, Grok-specific usage extraction and pricing, and preservation of repeated upstream response headers.
