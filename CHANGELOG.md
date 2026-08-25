@@ -1,3 +1,6 @@
+## [0.51.2]
+- Updated the Python LLM proxy pricing tables to mirror the new GPT-5.6 and GPT-5.6-Sol token rates, add long-context priority token classes, and enforce the >272K long-context cutoff.
+
 ## [0.51.1]
 - Storage commands now use the canonical room name returned by account lookup when opening websocket connections, so case-insensitive room names resolve consistently across storage operations.
 
