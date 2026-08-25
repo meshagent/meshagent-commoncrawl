@@ -1,3 +1,6 @@
+## [0.51.3]
+- Stability
+
 ## [0.51.2]
 - Updated the Python LLM proxy pricing tables to mirror the new GPT-5.6 and GPT-5.6-Sol token rates, add long-context priority token classes, and enforce the >272K long-context cutoff.
 
