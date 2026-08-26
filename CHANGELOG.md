@@ -1,3 +1,6 @@
+## [0.51.4]
+- Breaking: the Python client now uses `email` instead of `user_id` for participant-token minting and room/agent connect impersonation, and serializes the new `email` request field for those helpers.
+
 ## [0.51.3]
 - Stability
 
