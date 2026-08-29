@@ -1,3 +1,7 @@
+## [0.51.6]
+- Python route specs now accept optional `notFound` and `unavailable` fallback paths, normalize them, and reject empty or dot-segment paths as well as invalid content/service combinations.
+- Route updates preserve existing fallback settings when editing routes, so the CLI can round-trip the new schema cleanly.
+
 ## [0.51.5]
 - Stability
 
