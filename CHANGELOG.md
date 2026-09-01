@@ -1,3 +1,10 @@
+## [0.52.0]
+- Added custom-domain client and CLI support for create/get/list/delete, plus typed models for DNS records, conditions, and provisioning status.
+- Route specs and route-editing commands now support `notFound` content fallbacks and `unavailable` service fallbacks.
+- Participant-token and room/agent connect impersonation now use email addresses instead of user IDs.
+- Connected deploy/build commands now stay alive while the room is connected, but abort promptly when the room disconnects.
+- IAP WebSocket auth now uses the host-only `__Host-meshagent_iap` cookie name.
+
 ## [0.51.5]
 - Stability
 
