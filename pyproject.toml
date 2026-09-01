@@ -12,7 +12,11 @@ dependencies = [
   "datafusion~=52.0.0",
   "pytest~=8.4",
   "pytest-asyncio~=0.26",
+<<<<<<< HEAD
   "meshagent-api==0.51.6",
+=======
+  "meshagent-api==0.52.0",
+>>>>>>> origin/main
   "pyarrow~=21.0.0",
   "warcio~=1.7",
 ]

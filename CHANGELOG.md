@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 ## [0.51.6]
 - Python route specs now accept optional `notFound` and `unavailable` fallback paths, normalize them, and reject empty or dot-segment paths as well as invalid content/service combinations.
 - Route updates preserve existing fallback settings when editing routes, so the CLI can round-trip the new schema cleanly.
+=======
+## [0.52.0]
+- Added custom-domain client and CLI support for create/get/list/delete, plus typed models for DNS records, conditions, and provisioning status.
+- Route specs and route-editing commands now support `notFound` content fallbacks and `unavailable` service fallbacks.
+- Participant-token and room/agent connect impersonation now use email addresses instead of user IDs.
+- Connected deploy/build commands now stay alive while the room is connected, but abort promptly when the room disconnects.
+- IAP WebSocket auth now uses the host-only `__Host-meshagent_iap` cookie name.
+>>>>>>> origin/main
 
 ## [0.51.5]
 - Stability
