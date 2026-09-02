@@ -1,6 +1,6 @@
 ## [0.52.1]
 - Added custom-domain client support and CLI commands for create/get/list/delete, including typed DNS authorization and certificate-state models.
-- Added `user_id`-aware participant-token creation and room/agent connection helpers, and aligned websocket IAP cookies with the `__Host-meshagent_iap` name.
+- Added `user_id`-aware participant-token creation and room/agent connection helpers, and standardized websocket IAP cookies on the `__meshagent_iap` name.
 - Clarified room status and lifecycle-event CLI help so current allocation state is separated from historical room events.
 - Normalized storage websocket connections to use the canonical room name returned by the API.
 - Reworked deploy-build waits and log streaming so connected builds can run indefinitely, disconnects fail promptly, and cleanup is safe.
