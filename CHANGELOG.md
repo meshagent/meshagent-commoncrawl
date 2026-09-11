@@ -1,3 +1,6 @@
+## [0.52.2]
+- Added an offline SQLite replica recovery command with validation, dry-run support, transaction targeting, integrity verification, JSON reports, and safe non-overwriting output.
+
 ## [0.52.1]
 - Added custom-domain client support and CLI commands for create/get/list/delete, including typed DNS authorization and certificate-state models.
 - Added `user_id`-aware participant-token creation and room/agent connection helpers, and aligned websocket IAP cookies with the `__Host-meshagent_iap` name.
