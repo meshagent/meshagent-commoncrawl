@@ -1,3 +1,7 @@
+## [0.52.4]
+- Tool-call events now retain provider-native item-type metadata, enabling correct OpenAI Responses MCP call and tool-list replay.
+- Dataset thread storage now queues steering requests until applied, preserving output ordering and preventing unapplied steering from being replayed as model input.
+
 ## [0.52.3]
 - Added typed LLM router configuration models and project commands for reading and replacing router settings from YAML.
 - Added deployment configuration values for OpenAI, Anthropic, and Grok proxy URLs.
