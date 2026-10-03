@@ -1,3 +1,10 @@
+## [0.53.0]
+- Added user profile metadata and annotations, partial profile updates, and the `user_profile_editor` project role with project-scoped authorization for editing other users or annotations.
+- Changed OpenAI Responses defaults from `gpt-5.2` to `gpt-6.1-sol` and CLI/Codex defaults from `gpt-5.6-sol` to `gpt-6.1-sol`.
+- Added OpenAI Responses support for GPT-6 models and 1,050,000-token context windows.
+- Added pricing and usage support for GPT-6, GPT-5.6 Cyber, new image and audio models, new Claude models, and OpenAI `ultrafast` service tiers.
+- Expanded Enterprise Codex distribution tooling with package-manifest generation, installation verification, cross-platform smoke tests, and Windows authentication support.
+
 ## [0.52.4]
 - Tool-call events now retain provider-native item-type metadata, enabling correct OpenAI Responses MCP call and tool-list replay.
 - Dataset thread storage now queues steering requests until applied, preserving output ordering and preventing unapplied steering from being replayed as model input.
