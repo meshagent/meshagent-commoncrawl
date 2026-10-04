@@ -1,3 +1,6 @@
+## [0.53.1]
+- Stability
+
 ## [0.53.0]
 - Added user profile metadata and annotations, partial profile updates, and the `user_profile_editor` project role with project-scoped authorization for editing other users or annotations.
 - Changed OpenAI Responses defaults from `gpt-5.2` to `gpt-6.1-sol` and CLI/Codex defaults from `gpt-5.6-sol` to `gpt-6.1-sol`.
