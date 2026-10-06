@@ -1,3 +1,6 @@
+## [0.53.3]
+- Stability
+
 ## [0.53.2]
 - Added typed project profile views, project-local updates with inheritance, merged project member profiles, and sysadmin global user search and profile administration.
 - Added CLI support for `--view`, `--global`, `--inherit`, and `sysadmin user list/get/update` commands.
