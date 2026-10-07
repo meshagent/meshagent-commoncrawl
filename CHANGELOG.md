@@ -1,3 +1,8 @@
+## [0.53.4]
+- Added `/v1/decisions` support to the Python LLM proxy, including forwarding, exact-path allowlisting, usage collection, and endpoint-aware pricing.
+- Added Decisions usage extraction that bills input tokens only, ignores cache/output/service-tier pricing, and preserves total-token and compute-unit telemetry.
+- Prevented failed upstream HTTP responses from generating usage records.
+
 ## [0.53.3]
 - Stability
 
