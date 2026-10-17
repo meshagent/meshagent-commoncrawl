@@ -1,3 +1,17 @@
+## [0.53.5]
+- Added typed project and global profile models, project-scoped views, local overrides with inheritance, merged project-member profiles, and sysadmin profile administration.
+- Added profile view, global-profile, inheritance, and sysadmin user management options to the Python CLI.
+- Added `/v1/decisions` support with endpoint-aware forwarding, input-only pricing, usage telemetry, and suppression of usage records for failed responses.
+- Project profile updates now require `user_profile_editor`; global profile access is self-only and global annotations require sysadmin APIs.
+
+## [0.53.4]
+- Added `/v1/decisions` support to the Python LLM proxy, including forwarding, exact-path allowlisting, usage collection, and endpoint-aware pricing.
+- Added Decisions usage extraction that bills input tokens only, ignores cache/output/service-tier pricing, and preserves total-token and compute-unit telemetry.
+- Prevented failed upstream HTTP responses from generating usage records.
+
+## [0.53.3]
+- Stability
+
 ## [0.53.2]
 - Added typed project profile views, project-local updates with inheritance, merged project member profiles, and sysadmin global user search and profile administration.
 - Added CLI support for `--view`, `--global`, `--inherit`, and `sysadmin user list/get/update` commands.
