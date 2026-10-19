@@ -1,3 +1,6 @@
+## [0.54.1]
+- Stability
+
 ## [0.54.0]
 - Added OpenAI Decisions API support to the Python LLM proxy, with endpoint allowlisting, request forwarding, successful-response usage tracking, and Decisions-specific input-only pricing.
 
