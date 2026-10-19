@@ -1,3 +1,12 @@
+## [0.54.0]
+- Added OpenAI Decisions API support to the Python LLM proxy, with endpoint allowlisting, request forwarding, successful-response usage tracking, and Decisions-specific input-only pricing.
+
+## [0.53.5]
+- Added typed project and global profile models, project-scoped views, local overrides with inheritance, merged project-member profiles, and sysadmin profile administration.
+- Added profile view, global-profile, inheritance, and sysadmin user management options to the Python CLI.
+- Added `/v1/decisions` support with endpoint-aware forwarding, input-only pricing, usage telemetry, and suppression of usage records for failed responses.
+- Project profile updates now require `user_profile_editor`; global profile access is self-only and global annotations require sysadmin APIs.
+
 ## [0.53.4]
 - Added `/v1/decisions` support to the Python LLM proxy, including forwarding, exact-path allowlisting, usage collection, and endpoint-aware pricing.
 - Added Decisions usage extraction that bills input tokens only, ignores cache/output/service-tier pricing, and preserves total-token and compute-unit telemetry.
