@@ -1,3 +1,8 @@
+## [0.55.0]
+- Added managed-agent Python tool and HTTP connection models, including strict schema, URL, source, entrypoint, and duplicate-name validation.
+- Added local CLI execution for embedded Python tools with JSON input, live HTTP requests, captured logs, request summaries, and optional private-HTTP access for development.
+- Agent file commands now support managed-agent paths without requiring a room.
+
 ## [0.54.2]
 - Stability
 
