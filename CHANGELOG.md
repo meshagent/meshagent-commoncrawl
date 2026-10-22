@@ -1,3 +1,12 @@
+## [0.55.1]
+- Added managed-agent models for secret-backed HTTP headers, environment variables, decision guardrails, and reserved deployment route domains with strict validation.
+- Added embedded local execution of managed Python tools with bundled Monty, secure HTTP access, secret injection, captured logs, request summaries, resource limits, and optional private-HTTP development access.
+- Added SQLite replication options, settings management, and explicit flush commands to the CLI and Python client.
+- CLI credentials, project selections, and cached state are now scoped by API environment; legacy settings migrate automatically, and `auth switch --api-url` selects among matching profiles.
+- BREAKING: service-template rendering now uses an immutable sandbox; templates relying on Python internals may no longer render.
+- Fixed concurrent dataset-catalog initialization so read-only misses do not prevent catalog creation.
+- Added the `pydantic-monty==1.2.0` dependency.
+
 ## [0.55.0]
 - Added managed-agent Python tool and HTTP connection models, including strict schema, URL, source, entrypoint, and duplicate-name validation.
 - Added local CLI execution for embedded Python tools with JSON input, live HTTP requests, captured logs, request summaries, and optional private-HTTP access for development.
