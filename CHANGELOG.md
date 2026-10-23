@@ -1,3 +1,6 @@
+## [0.55.2]
+- Stability
+
 ## [0.55.1]
 - Added managed-agent models for secret-backed HTTP headers, environment variables, decision guardrails, and reserved deployment route domains with strict validation.
 - Added embedded local execution of managed Python tools with bundled Monty, secure HTTP access, secret injection, captured logs, request summaries, resource limits, and optional private-HTTP development access.
