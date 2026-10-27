@@ -1,3 +1,9 @@
+## [0.56.0]
+- Added OAuth client branding support for optionally removing MeshAgent attribution from hosted login pages.
+- Added reserved route-domain data to deployment configuration responses.
+- Service-template rendering now uses an immutable Jinja sandbox, preventing access to process internals and environment secrets; templates using unsupported Python-internal behavior may need updating.
+- Updated certifi to >=2026.10.19 for the security fix.
+
 ## [0.55.2]
 - Stability
 
