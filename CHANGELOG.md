@@ -1,3 +1,6 @@
+## [0.56.1]
+- Added OAuth client branding support to optionally remove MeshAgent attribution from hosted login pages.
+
 ## [0.56.0]
 - Added OAuth client branding support for optionally removing MeshAgent attribution from hosted login pages.
 - Added reserved route-domain data to deployment configuration responses.
