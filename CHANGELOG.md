@@ -1,3 +1,7 @@
+## [0.56.2]
+- Breaking change: the Python effective-access method now requires a roles list and sends roles separately from capability relations.
+- Deployment-room discovery now supplies requested roles explicitly when checking administrative access.
+
 ## [0.56.1]
 - Added OAuth client branding support to optionally remove MeshAgent attribution from hosted login pages.
 
