@@ -1,3 +1,8 @@
+## [0.57.0]
+- Added typed Python models and client methods for room storage connections, including provider-specific configuration, credential validation, anonymous access, secure credential redaction, and path validation.
+- Added Python SDK support for registering existing external Lance datasets as read-only room tables.
+- Added CLI commands to list, create, update, and delete room storage connections and register external datasets.
+
 ## [0.56.2]
 - Breaking change: the Python effective-access method now requires a roles list and sends roles separately from capability relations.
 - Deployment-room discovery now supplies requested roles explicitly when checking administrative access.
