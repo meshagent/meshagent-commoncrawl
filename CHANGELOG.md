@@ -1,3 +1,8 @@
+## [0.57.1]
+- Added optional ETag matching to Python file uploads, including validation that the ETag is non-empty.
+- Added pricing and long-context support for GPT-6.1 Terra, GPT-6.2 Astra/Sol, Claude Fable/Mythos 5.2, and Claude Haiku 5.5.
+- Added temporary GPT-6.2 ultrafast promotional pricing through March 1, 2027.
+
 ## [0.57.0]
 - Added typed Python models and client methods for room storage connections, including provider-specific configuration, credential validation, anonymous access, secure credential redaction, and path validation.
 - Added Python SDK support for registering existing external Lance datasets as read-only room tables.
