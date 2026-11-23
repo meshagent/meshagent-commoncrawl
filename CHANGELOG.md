@@ -1,3 +1,6 @@
+## [0.57.2]
+- Daily storage pricing now uses a prorated rate of $0.05 per GiB-month over a 30-day month.
+
 ## [0.57.1]
 - Added optional ETag matching to Python file uploads, including validation that the ETag is non-empty.
 - Added pricing and long-context support for GPT-6.1 Terra, GPT-6.2 Astra/Sol, Claude Fable/Mythos 5.2, and Claude Haiku 5.5.
