@@ -1,3 +1,6 @@
+## [0.58.0]
+- Stability
+
 ## [0.57.2]
 - Daily storage pricing now uses a prorated rate of $0.05 per GiB-month over a 30-day month.
 
