@@ -1,3 +1,8 @@
+## [0.58.1]
+- Managed Agent route specifications now support IAP-protected file content, and route creation and update commands accept IAP protection for agent-backed file routes.
+- Added LLM usage extraction and pricing for OpenAI web search, Anthropic web search, and Grok search, X, file, and document tools.
+- Added nested cumulative streaming usage handling and support for incomplete OpenAI Responses events.
+
 ## [0.58.0]
 - Stability
 
