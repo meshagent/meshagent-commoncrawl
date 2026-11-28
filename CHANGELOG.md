@@ -1,3 +1,6 @@
+## [0.58.2]
+- Updated Python `list_versions` to transparently fetch paginated dataset histories while preserving oldest-to-newest results and supporting older servers.
+
 ## [0.58.1]
 - Managed Agent route specifications now support IAP-protected file content, and route creation and update commands accept IAP protection for agent-backed file routes.
 - Added LLM usage extraction and pricing for OpenAI web search, Anthropic web search, and Grok search, X, file, and document tools.
